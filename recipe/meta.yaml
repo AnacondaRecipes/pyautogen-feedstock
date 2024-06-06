@@ -28,6 +28,7 @@ requirements:
     - python-dotenv
     - termcolor
     - tiktoken
+    - wheel
   run:
     - diskcache
     - docker
@@ -55,6 +56,8 @@ test:
     - autogen.io
     - autogen.logger
     - autogen.oai
+  commands:
+    - pip check
 
 about:
   home: "https://github.com/microsoft/autogen"
