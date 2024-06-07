@@ -29,6 +29,8 @@ requirements:
     - termcolor
     - tiktoken
     - wheel
+#    - websocket
+#    - jupyter_client
   run:
     - diskcache
     - docker
@@ -41,6 +43,8 @@ requirements:
     - python-dotenv
     - termcolor
     - tiktoken
+#    - websocket
+#    - jupyter_client
 
 test:
   imports:
