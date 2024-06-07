@@ -28,6 +28,9 @@ requirements:
     - python-dotenv
     - termcolor
     - tiktoken
+    - wheel
+    - websocket
+    - jupyter_client
   run:
     - diskcache
     - docker
@@ -40,6 +43,8 @@ requirements:
     - python-dotenv
     - termcolor
     - tiktoken
+    - websocket
+    - jupyter_client
 
 test:
   imports:
@@ -55,6 +60,8 @@ test:
     - autogen.io
     - autogen.logger
     - autogen.oai
+  commands:
+    - pip check
 
 about:
   home: "https://github.com/microsoft/autogen"
@@ -71,4 +78,3 @@ extra:
     reason: Client request
   recipe-maintainers:
     - ianaobi
-    - bkreider
