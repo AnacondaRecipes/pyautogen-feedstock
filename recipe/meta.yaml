@@ -1,0 +1,56 @@
+{% set name = "pyautogen" %}
+{% set version = "0.11.4" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/ag2ai/ag2/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 98951606e6fb6cc7bbff168595bf64dab2f3157ef5e63eea70468611062d7fc2
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python
+    - hatchling
+    - pip
+  run:
+    - python
+    - diskcache
+    - termcolor
+    - python-dotenv
+    - tiktoken
+    - pydantic >=2.6.1,<3
+    - docker-py
+    - packaging
+    - httpx >=0.28.1,<1
+    - anyio >=4.0.0,<5.0.0  # needed by the internal fast-depends
+    # for beta tools
+    - fast-depends >=3.0.8,<4.0.0
+test:
+  imports:
+    - autogen
+  requires:
+    - pip
+  commands:
+    - pip check
+
+about:
+  home: https://github.com/ag2ai/ag2
+  dev_url: https://github.com/ag2ai/ag2
+  doc_url: https://docs.ag2.ai
+  summary: A programming framework for agentic AI
+  description: |
+    AG2 (distributed on PyPI as ag2) is a programming framework for building
+    multi-agent and agentic AI applications.
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
