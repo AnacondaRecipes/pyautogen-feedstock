@@ -19,6 +19,7 @@ requirements:
     - hatchling
     - pip
   run:
+    - python
     - diskcache
     - termcolor
     - python-dotenv
@@ -40,8 +41,14 @@ test:
 
 about:
   home: https://github.com/ag2ai/ag2
+  dev_url: https://github.com/ag2ai/ag2
+  doc_url: https://docs.ag2.ai
   summary: A programming framework for agentic AI
+  description: |
+    AG2 (distributed on PyPI as ag2) is a programming framework for building
+    multi-agent and agentic AI applications.
   license: Apache-2.0
+  license_family: Apache
   license_file: LICENSE
 
 extra:
