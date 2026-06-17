@@ -1,17 +1,18 @@
 {% set name = "pyautogen" %}
-{% set version = "0.11.4" %}
+{% set version = "0.13.4" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://github.com/ag2ai/ag2/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 98951606e6fb6cc7bbff168595bf64dab2f3157ef5e63eea70468611062d7fc2
+  sha256: b2b157a5031c5efde99fd0ba8d00005b14fa4a58bba1ffa136d6682bf7c730a4
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<310]
 
 requirements:
   host:
@@ -20,17 +21,157 @@ requirements:
     - pip
   run:
     - python
-    - diskcache
     - termcolor
     - python-dotenv
     - tiktoken
     - pydantic >=2.6.1,<3
-    - docker-py
+    - pyyaml >=6.0.2
     - packaging
     - httpx >=0.28.1,<1
     - anyio >=4.0.0,<5.0.0  # needed by the internal fast-depends
     # for beta tools
     - fast-depends >=3.0.8,<4.0.0
+  run_constrained:
+    # a2ui
+    - jsonschema >=4.0.0,<5
+    # a2a
+    - a2a-sdk >=1.1.0,<2
+    # ag-ui
+    - ag-ui-protocol >=0.1.15,<0.2
+    # openai
+    - openai >=2.41.0,<3.0
+    # anthropic
+    - anthropic >=0.79.0,<1
+    # gemini
+    #- google-genai>=1.20.0,<2.0
+    # gemini-realtime
+    #- google-genai>=1.75.0,<2.0
+    # groq
+    - groq >=0.9.0
+    # xai
+    - xai-sdk >=1.12.2,<2
+    # ollama
+    - ollama>=0.4.7
+    - fix_busted_json >=0.0.18
+    # bedrock
+    - boto3 >=1.34.149
+    # mistral
+    - mistralai >=2.0.0,<3.0.0
+    # dashscope
+    - dashscope>=1.25.13
+    # redis
+    - redis >=5.0,<7
+    # tracing
+    - opentelemetry-sdk >=1.20
+    - opentelemetry-exporter-otlp-proto-grpc >=1.20
+    # flaml
+    - numpy >=2.1  # [py>=313]
+    - numpy>=1.24.0,<2.0.0  # [py<313]
+    # docker
+    - docker >=6.0.0,<8
+    # jupyter-executor
+    - jupyter-client >=8.6.0
+    - ipykernel >=6.29.0
+    # retrievechat
+    - protobuf ==6.33.5
+    - chromadb >=1.4.1,<1.5
+    - sentence-transformers >=5.2.2,<=6
+    # retrievechat-pgvector
+    - pgvector >=0.2.5
+    - psycopg >=3.1.18
+    # retrievechat-mongodb
+    - pymongo >=4.0.0
+    # retrievechat-qdrant
+    - fastembed >=0.3.1
+    # retrievechat-couchbase
+    - couchbase >=4.3.0
+    # graph-rag-falkor-db
+    - graphrag-sdk ==0.8.2
+    - falkordb >=1.0.10
+    # rag
+    - docling >=2.15.1,<3
+    - selenium >=4.28.1,<5
+    - webdriver-manager ==4.0.2
+    - llama-index >=0.14.13,<0.15
+    - llama-index-core >=0.14.13,<0.15
+    - llama-index-vector-stores-chroma >=0.4,<0.6
+    - llama-index-vector-stores-mongodb >=0.6,<0.9
+    - llama-index-embeddings-huggingface >=0.5,<0.7
+    - llama-index-llms-langchain >=0.6,<0.8
+    - llama-index-embeddings-openai >=0.3,<0.8
+    - llama-index-llms-openai >=0.4,<0.8
+    # crawl4ai
+    - crawl4ai >=0.5.0,<0.9
+    # quick-research
+    #- tavily-python >=0.7.4
+    # browser-use
+    - browser-use >=0.3.1,<1.0  # [py>=311]
+    - langchain-google-vertexai >=2.0,<3.0  # [py>=311]
+    # google-client
+    - google-api-python-client >=2.163.0,<3.0
+    # google-api
+    - google-auth-httplib2 >=0.2.0,<0.3
+    - google-auth-oauthlib >=1.2.1,<2.0
+    # wikipedia
+    - wikipedia-api >=0.8.1,<1.0
+    # neo4j
+    - docx2txt ==0.9
+    - llama-index-graph-stores-neo4j >=0.4,<0.7
+    - llama-index-readers-web >=0.4,<0.7
+    # twilio
+    - fastapi >=0.115.0,<1
+    - uvicorn >=0.30.6,<1
+    - twilio >=9.3.2
+    # mcp
+    - mcp >=1.11.0,<2
+    # mcp-proxy-gen
+    - fastapi-code-generator >=0.5.4
+    # interop-crewai
+    - crewai >=0.76,<1  # [py>=310 and py<313]
+    - litellm <=1.76.3  # [py>=310 and py<313]
+    - weaviate-client >=4,<5  # [py>=310 and py<313]
+    # interop-langchain
+    - langchain-community >=0.3.12,<1
+    # interop-pydantic-ai
+    - pydantic-ai-slim >=1.0.12,<1.79
+    # autobuild / captainagent
+    - pandas >=2.2.0,<3
+    # together
+    - together >=1.2
+    # cosmosdb
+    - azure-cosmos >=4.2.0
+    # websockets
+    - websockets >=14.0,<17
+    # watchdog
+    - watchdog >=4.0,<7
+    # long-context
+    - llmlingua <0.3
+    # cerebras
+    - cerebras-cloud-sdk >=1.0.0
+    # yepcode
+    - yepcode-run >=1.6.1  # [py>=311]
+    # remyx
+    - remyxai >=0.2.0
+    # cohere
+    - cohere >=5.13.5
+    # commsagent-discord
+    - discord.py >=2.4.0,<2.7
+    # commsagent-slack
+    - slack-sdk >=3.33.0,<3.40
+    # commsagent-telegram
+    - telethon >=1.38.1,<2
+    # duckduckgo
+    - duckduckgo-search >=8.0.2
+    # ddgs
+    - ddgs >=9.0.0,<10
+    # tavily
+    #- tavily-python >=0.7.4,<0.8
+    # perplexity
+    - perplexityai >=0.30.0,<1
+    # nlip
+    - nlip-sdk >=0.1.0,<1
+    - nlip-server >=0.1.0,<1
+
 test:
   imports:
     - autogen
