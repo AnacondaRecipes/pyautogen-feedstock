@@ -1,5 +1,5 @@
 {% set name = "pyautogen" %}
-{% set version = "0.13.4" %}
+{% set version = "1.0.2" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/ag2ai/ag2/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: b2b157a5031c5efde99fd0ba8d00005b14fa4a58bba1ffa136d6682bf7c730a4
+  sha256: 348b2c6d6caa06a9721f6a7bb6a8ec5075a734b489ccfc380890c9ebfdbf982f
 
 build:
   number: 0
@@ -19,6 +19,7 @@ requirements:
     - python
     - hatchling
     - pip
+    - uv_build >=0.9.2,<0.12
   run:
     - python
     - termcolor
@@ -28,20 +29,20 @@ requirements:
     - pyyaml >=6.0.2
     - packaging
     - httpx >=0.28.1,<1
-    - anyio >=4.0.0,<5.0.0  # needed by the internal fast-depends
+    - anyio >=4.0.0,<5.0.0
     # for beta tools
     - fast-depends >=3.0.8,<4.0.0
   run_constrained:
     # a2ui
-    - jsonschema >=4.0.0,<5
+    - jsonschema >=4.18.0,<5
     # a2a
     - a2a-sdk >=1.1.0,<2
     # ag-ui
     - ag-ui-protocol >=0.1.15,<0.2
     # openai
-    - openai >=2.41.0,<3.0
+    - openai >=2.45.0,<3.0
     # anthropic
-    - anthropic >=0.79.0,<1
+    - anthropic >=0.116.0,<1
     # gemini
     #- google-genai>=1.20.0,<2.0
     # gemini-realtime
@@ -51,14 +52,14 @@ requirements:
     # xai
     - xai-sdk >=1.12.2,<2
     # ollama
-    - ollama>=0.4.7
+    - ollama >=0.4.7
     - fix_busted_json >=0.0.18
     # bedrock
     - boto3 >=1.34.149
     # mistral
-    - mistralai >=2.0.0,<3.0.0
+    - mistralai >=2.8.0,<3
     # dashscope
-    - dashscope>=1.25.13
+    - dashscope >=1.25.13
     # redis
     - redis >=5.0,<7
     # tracing
@@ -120,7 +121,7 @@ requirements:
     - llama-index-readers-web >=0.4,<0.7
     # twilio
     - fastapi >=0.115.0,<1
-    - uvicorn >=0.30.6,<1
+    - uvicorn >=0.51.0,<1
     - twilio >=9.3.2
     # mcp
     - mcp >=1.11.0,<2
@@ -171,6 +172,15 @@ requirements:
     # nlip
     - nlip-sdk >=0.1.0,<1
     - nlip-server >=0.1.0,<1
+    - starlette >=0.40,<2
+    - agent-client-protocol >=0.12.0,<0.13
+    - elevenlabs >=1.50.0,<3
+    - google-genai >=1.68.0,<3.0
+    - mcp-ui-server >=1.0.0
+    - prometheus-client >=0.20.0,<0.30.0
+    - redis-py >=5.0,<9
+    - tavily-python >=0.7.4,<0.8
+    - zai-sdk >=0.2.3,<1
 
 test:
   imports:
